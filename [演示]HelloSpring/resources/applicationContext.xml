@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <!-- 通过bean元素声明需要spring创建的实例。该实例的类型通过class属性指定，并通过id属性为该实例指定一个名称，以便在程序中使用 -->
+    <bean id="helleSpring" class="com.springdemo.HelloSpring">
+        <!-- property元素用来为实例的属性赋值，此处实际是调用setWho()方法实现赋值操作 -->
+        <property name="who">
+            <!-- 此处将字符串"Spring"赋值给who属性 -->
+            <value>Spring</value>
+        </property>
+    </bean>
+
+
+
+</beans>
