@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+
+    <bean id="entity" class="org.property.entity.TestEntity">
+        <!-- 使用<![CDATA[]]>标记处理XML特殊字符  -->
+        <property name="specialCharacter1">
+            <value><![CDATA[P&G]]></value>
+        </property>
+
+        <!-- 把XML特殊字符替换为转义 -->
+        <property name="specialCharacter2">
+            <value>P&amp;G</value>
+        </property>
+
+        <!-- 定义内部Bean -->
+        <property name="innerBean">
+            <bean class="org.property.entity.User">
+                <property name="username">
+                    <value>Mr.Zhang3</value>
+                </property>
+            </bean>
+        </property>
+
+        <!-- 注入List类型 -->
+        <property name="list">
+            <list>
+                <!-- 定义List中的元素 -->
+                <value>足球</value>
+                <value>篮球</value>
+            </list>
+        </property>
+
+        <property name="listUser">
+            <list>
+                <bean class="org.property.entity.User">
+                    <property name="username">
+                        <value>lisi</value>
+                    </property>
+                </bean>
+            </list>
+        </property>
+
+
+        <!-- 注入数组类型 -->
+        <property name="array">
+            <list>
+                <!-- 定义数组中的元素 -->
+                <value>足球</value>
+                <value>篮球</value>
+            </list>
+        </property>
+
+
+        <!-- 注入set类型 -->
+        <property name="set">
+            <set>
+                <!-- 定义数组中的元素 -->
+                <value>足球</value>
+                <value>篮球</value>
+            </set>
+        </property>
+
+        <!--注入map类型 -->
+        <property name="map">
+            <map>
+                <entry>
+                    <key>
+                        <value>football</value>
+                    </key>
+                    <value>足球</value>
+                </entry>
+                <entry>
+                    <key>
+                        <value>basketball</value>
+                    </key>
+                    <value>篮球</value>
+                </entry>
+            </map>
+        </property>
+
+        <!-- 注入Properties类型 -->
+        <property name="properties">
+            <props>
+                <!-- 定义Properties中的键值对 -->
+                <prop key="football">足球</prop>
+                <prop key="basketball">篮球</prop>
+            </props>
+        </property>
+
+        <!-- 注入空字符串 -->
+        <property name="emptyValue">
+            <value></value>
+        </property>
+
+        <!-- 注入null值  -->
+        <property name="nullValue">
+            <null></null>
+        </property>
+
+
+    </bean>
+
+
+</beans>
