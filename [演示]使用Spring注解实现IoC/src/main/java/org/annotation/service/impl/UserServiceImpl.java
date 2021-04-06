@@ -1,9 +1,11 @@
-package org.constructor.service.impl;
+package org.annotation.service.impl;
 
-import org.constructor.dao.UserDao;
-import org.constructor.entity.User;
-import org.constructor.service.UserService;
+
+import org.annotation.dao.UserDao;
+import org.annotation.entity.User;
+import org.annotation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,7 +18,7 @@ import javax.annotation.Resource;
  * @date: 2021/4/6 9:46
  * @email: 10947@163.com
  */
-
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
     /**
@@ -27,7 +29,9 @@ public class UserServiceImpl implements UserService {
      * @param null
      * @return null
      */
+    @Autowired
     private UserDao userDao;
+
 
     /**
      * 无参构造

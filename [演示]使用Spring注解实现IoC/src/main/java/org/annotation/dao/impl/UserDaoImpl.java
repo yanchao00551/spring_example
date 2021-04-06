@@ -1,7 +1,9 @@
-package org.constructor.dao.impl;
+package org.annotation.dao.impl;
 
-import org.constructor.dao.UserDao;
-import org.constructor.entity.User;
+
+import org.annotation.dao.UserDao;
+import org.annotation.entity.User;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Repository;
  * @date: 2021/4/6 9:49
  * @email: 10947@163.com
  */
+@Repository
 public class UserDaoImpl implements UserDao {
     @Override
     public void save(User user) {
