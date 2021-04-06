@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+    <!-- 定义UserDaoImpl对象，并指定id为userDao -->
+    <bean id="userDao" class="org.constructor.dao.impl.UserDaoImpl">
+    </bean>
+
+    <!-- 定义UserServiceImpl对象，并指定id为userService  -->
+    <bean id="userService" class="org.constructor.service.impl.UserServiceImpl">
+        <!-- 通过定义的单构造为userService的dao属性赋值 -->
+        <constructor-arg index="0">
+            <!-- 引用id为userDao的对象为userService的dao属性赋值 -->
+            <ref bean="userDao"/>
+        </constructor-arg>
+    </bean>
+
+</beans>

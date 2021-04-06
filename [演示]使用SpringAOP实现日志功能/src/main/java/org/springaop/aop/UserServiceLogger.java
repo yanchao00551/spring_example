@@ -40,4 +40,8 @@ public class UserServiceLogger {
     public void afterReturning(JoinPoint jp,Object result){
         log.info("调用 " + jp.getTarget() + " 的 " + jp.getSignature().getName() +" 方法。方法的返回值：" + result);
     }
+
+
+
+
 }

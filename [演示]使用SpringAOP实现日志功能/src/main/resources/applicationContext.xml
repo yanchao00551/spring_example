@@ -20,7 +20,6 @@
     <aop:config>
         <!--定义切入点-->
         <aop:pointcut id="pointcut" expression="execution(* org.springaop.service.impl..*.*(..))"></aop:pointcut>
-
         <!--引用包含增强方法的bean-->
         <aop:aspect ref="theLogger">
             <!-- 将before()方法定义为前置增强并引用pointcut切入点-->
@@ -29,5 +28,11 @@
             <aop:after-returning method="afterReturning" pointcut-ref="pointcut" returning="result"></aop:after-returning>
         </aop:aspect>
     </aop:config>
+
+
+
+
+
+
 
 </beans>
