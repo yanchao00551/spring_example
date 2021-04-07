@@ -16,6 +16,18 @@
     </resultMap>
 
 
+    <insert id="add" parameterType="User">
+        insert into skeyedu_user ( loginName, userName,
+                                  password, sex, identityCode,
+                                  email, mobile, type
+        )
+        values (#{loginName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+                #{password,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{identityCode,jdbcType=VARCHAR},
+                #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}
+               )
+    </insert>
+
+
     <select id="getUserList" parameterType="User" resultMap="BaseResultMap">
           SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type`
            FROM skeyedu_user

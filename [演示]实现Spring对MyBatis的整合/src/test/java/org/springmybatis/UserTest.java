@@ -7,6 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springmybatis.pojo.User;
 import org.springmybatis.service.UserService;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -34,5 +35,25 @@ public class UserTest {
 
         //java 8新特性
         list.forEach((value) -> log.info("每行的内容：{}",value));
+    }
+
+    @Test
+    public void testAddNewUser() throws ParseException{
+        ApplicationContext ctx  = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserService userService = (UserService) ctx.getBean("userService");
+
+        User skeyeduUser = new User();
+        skeyeduUser.setUserName("测试插入");
+        skeyeduUser.setLoginName("zhao7");
+        skeyeduUser.setPassword("helloworld");
+        skeyeduUser.setSex(0);
+        skeyeduUser.setIdentityCode("4032020302");
+        skeyeduUser.setEmail("7631990@qq.com");
+        skeyeduUser.setMobile("13242232443");
+        skeyeduUser.setType(1);
+
+        boolean result = userService.addNewUser(skeyeduUser);
+        log.info("testAdd result: " + result);
+
     }
 }
