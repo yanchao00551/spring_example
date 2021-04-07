@@ -1,0 +1,5 @@
+org\springmybatis\service\impl\UserServiceImpl.class
+org\springmybatis\pojo\User.class
+org\springmybatis\service\UserService.class
+org\springmybatis\dao\UserMapper.class
+org\springmybatis\controller\IndexController.class

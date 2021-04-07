@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.springmybatis.dao.UserMapper">
+
+    <resultMap id="BaseResultMap" type="User">
+        <id column="id"  property="id" />
+        <result column="loginName"  property="loginName" />
+        <result column="userName" property="userName" />
+        <result column="password"  property="password" />
+        <result column="sex"  property="sex" />
+        <result column="identityCode"  property="identityCode" />
+        <result column="email"  property="email" />
+        <result column="mobile"  property="mobile" />
+        <result column="type"  property="type" />
+    </resultMap>
+
+
+    <insert id="add" parameterType="User">
+        insert into skeyedu_user ( loginName, userName,
+                                  password, sex, identityCode,
+                                  email, mobile, type
+        )
+        values (#{loginName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+                #{password,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{identityCode,jdbcType=VARCHAR},
+                #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}
+               )
+    </insert>
+
+
+    <select id="getUserList" parameterType="User" resultMap="BaseResultMap">
+          SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type`
+           FROM skeyedu_user
+          <trim prefix="where" prefixOverrides="AND | OR">
+              <if test="loginName != null">
+                  AND loginName like CONCAT('%',#{loginName},'%')
+              </if>
+          </trim>
+    </select>
+
+</mapper>
