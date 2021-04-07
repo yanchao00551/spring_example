@@ -1,7 +1,9 @@
 package org.springmybatis.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.mvc.AbstractController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springmybatis.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
