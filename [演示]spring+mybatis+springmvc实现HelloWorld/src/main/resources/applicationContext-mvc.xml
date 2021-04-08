@@ -17,6 +17,11 @@
     <context:component-scan base-package="org.springmybatis.controller"/>
 
 
+    <!-- mvc静态资源配置 -->
+    <mvc:resources mapping="/statics/image/**" location="/statics/image/"/>
+    <mvc:resources mapping="/statics/js/**" location="/statics/js/"/>
+    <mvc:resources mapping="/statics/css/**" location="/statics/css/"/>
+
 
     <!-- spring mvc配置 -->
     <!-- 完成视图的对应 -->

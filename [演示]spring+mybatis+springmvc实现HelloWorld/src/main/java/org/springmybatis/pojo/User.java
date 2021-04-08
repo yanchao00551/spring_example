@@ -2,6 +2,7 @@ package org.springmybatis.pojo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -15,6 +16,7 @@ import java.io.Serializable;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@ToString
 public class User implements Serializable {
     private Integer id;
     private String loginName;
