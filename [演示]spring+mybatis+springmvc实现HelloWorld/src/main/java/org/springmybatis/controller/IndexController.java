@@ -3,6 +3,7 @@ package org.springmybatis.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.AbstractController;
@@ -25,24 +26,20 @@ import javax.servlet.http.HttpServletResponse;
  * 控制器默认单例，非线程安全
  * @author 悟空
  * @description //TODO
- * @date 10:06 2021/4/8
+ * @date 13:00 2021/4/8
  * @param null
  * @return null
  */
-@RestController
-@RequestMapping("/home")
+@Controller
+@RequestMapping(value = "/home")
 public class IndexController {
 
-    private int i = 0;
 
-    @RequestMapping("/index")
-    public Integer index(){
-        return i++;
+    @RequestMapping( value = "/index",method = RequestMethod.GET)
+    public String index(){
+        System.out.println("方法执行");
+        return "index";
     }
 
-    @RequestMapping("/index2")
-    public Integer index2(){
-        return i++;
-    }
 }
 

@@ -13,101 +13,11 @@
 
     <!-- 扫描包中注解标注的类 -->
     <context:component-scan base-package="org.springmybatis.dao,org.springmybatis.service"/>
-
-
-    <!-- 导入外部配置文件 -->
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="ignoreUnresolvablePlaceholders" value="true" />
-        <property name="locations">
-            <list>
-                <value>classpath:db.properties</value>
-            </list>
-        </property>
-    </bean>
-
-    <!-- 配置阿里数据源 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <!--注入连接属性-->
-        <property name="driverClassName" value="${driver}"/>
-        <property name="url" value="${url}"/>
-        <property name="username" value="${user}"/>
-        <property name="password" value="${password}"/>
-        <!--初始化连接池大小-->
-        <property name="initialSize" value="5"></property>
-        <!--设置最大连接数-->
-        <property name="maxActive" value="10"></property>
-        <!--设置等待时间-->
-        <property name="maxWait" value="5000"/>
-        <!--配置数据源监控的filter-->
-        <property name="filters" value="stat"></property>
-    </bean>
-
-    <!-- 配置 SqlSessionFactoryBean -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <!-- 引用数据源组件 -->
-        <property name="dataSource" ref="dataSource"/>
-        <!-- 引用MyBatis配置文件中的配置 -->
-        <property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <!-- 配置sql映射文件信息 -->
-        <property name="mapperLocations">
-            <list>
-                <value>classpath:mapper/*.xml</value>
-            </list>
-        </property>
-    </bean>
-
-
-    <!-- 配置SqlSessionTemplate -->
-    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
-    </bean>
-
-
-    <!-- 批量生成mapper实现类 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
-        <!-- 扫描接口所在的包 -->
-        <property name="basePackage" value="org.springmybatis.dao"></property>
-    </bean>
-
-    <!-- 定义事务管理器  -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
+    <import resource="applicationContext-dao.xml"/>
+    <import resource="applicationContext-mvc.xml"/>
 
 
 
-    <!-- 开启声明式事务注解 -->
-    <tx:annotation-driven/>
-
-     <!--不使用注解 实现声明式事务 -->
-    <!--<tx:advice id="txAdvice">-->
-        <!--<tx:attributes>-->
-            <!--<tx:method name="find*" propagation="SUPPORTS"/>-->
-            <!--<tx:method name="get*" propagation="SUPPORTS" />-->
-            <!--<tx:method name="add*" propagation="REQUIRED"/>-->
-            <!--<tx:method name="del*" propagation="REQUIRED"/>-->
-            <!--<tx:method name="update*" propagation="REQUIRED"/>-->
-            <!--<tx:method name="*" propagation="REQUIRED" />-->
-        <!--</tx:attributes>-->
-    <!--</tx:advice>-->
-
-    <!--&lt;!&ndash; 定义切面 切点 &ndash;&gt;-->
-    <!--<aop:config>-->
-        <!--<aop:pointcut id="serviceMethod" expression="execution(* org.springmybatis.service..*.*(..))"/>-->
-        <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>-->
-    <!--</aop:config>-->
-
-
-    <bean name="/index.html" class="org.springmybatis.controller.IndexController"></bean>
-
-    <!-- spring mvc配置 -->
-    <!-- 完成视图的对应 -->
-    <!-- 对转向页面的路径解析  。 prefix:前缀   suffix:后缀 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
 
 
 </beans>

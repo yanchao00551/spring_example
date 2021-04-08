@@ -12,18 +12,19 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="org.springmybatis.controller"/>
-
     <!-- 开启springmvc注解支持 -->
     <mvc:annotation-driven/>
+    <context:component-scan base-package="org.springmybatis.controller"/>
+
 
 
     <!-- spring mvc配置 -->
     <!-- 完成视图的对应 -->
     <!-- 对转向页面的路径解析  。 prefix:前缀   suffix:后缀 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
     </bean>
 
 
