@@ -8,11 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.AbstractController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springmybatis.pojo.SysUser;
 import org.springmybatis.pojo.User;
 import org.springmybatis.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -64,6 +66,26 @@ public class IndexController {
         log.info("userId:{}" ,userId);
         return new ModelAndView("index");
     }
+
+
+    @RequestMapping(value = "/index4",method = RequestMethod.POST)
+    public ModelAndView index4(@RequestBody SysUser sysUser){
+        log.info("SysUser:{}" ,sysUser);
+        return new ModelAndView("index");
+    }
+
+
+    @RequestMapping(value = "/index5",method = RequestMethod.POST)
+    @ResponseBody
+    public Object index5(@RequestBody SysUser sysUser){
+        log.info("SysUser:{}" ,sysUser);
+        List<SysUser> sysUsers = new ArrayList<>();
+        sysUsers.add(sysUser);
+        return sysUsers;
+    }
+
+
+
 
 
 

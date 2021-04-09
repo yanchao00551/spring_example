@@ -27,4 +27,5 @@ public class User implements Serializable {
     private String email;
     private String mobile;
     private Integer type;
+
 }
